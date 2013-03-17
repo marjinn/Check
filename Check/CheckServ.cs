@@ -284,6 +284,7 @@ namespace Check
                             }
 
                             #endregion
+
                             VSS_status = service.DisplayName  + " : " + service.Status;
 
                         }
@@ -347,6 +348,7 @@ namespace Check
                             }
 
                             #endregion
+
                             wuauserv_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -402,6 +404,7 @@ namespace Check
                             }
 
                             #endregion
+
                             BITS_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -457,6 +460,7 @@ namespace Check
                             }
 
                             #endregion
+
                             CryptSvc_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -570,6 +574,7 @@ namespace Check
                             }
 
                             #endregion
+
                             Spooler_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -630,6 +635,7 @@ namespace Check
                             }
 
                             #endregion
+
                             srservice_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
