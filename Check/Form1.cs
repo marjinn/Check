@@ -110,8 +110,11 @@ namespace Check
                 //+ System.IO.Path.GetPathRoot(Environment.SystemDirectory) + @"Windows\Temp" + "    " + _tempDirSize
             + "\n" + "Total Temp Dir Size : " + TotalSize + " MB " + "\n"
             + "System Drive Free Space " + "[" + System.IO.Path.GetPathRoot(Environment.SystemDirectory) + "]" + " : " + nu.SystemDriveFreeSpace() + @" % " + "\n"
-            + "IE Version: " + nu.GetIEVersion() + Environment.NewLine
-            + "OS Version: " + _GetSystemInfo.getOSVersion().ToString()
+            + "IE Version : " + nu.GetIEVersion() + Environment.NewLine
+            + "OS Version : " + _GetSystemInfo.getOSVersion().ToString() + Environment.NewLine
+            + "MAC Address : " + _GetSystemInfo.GetMacAddress().ToString() + Environment.NewLine
+            + "System Uptime : " + _GetSystemInfo.getSystemUptime() + Environment.NewLine
+
             ;
         }
         #endregion
@@ -199,7 +202,9 @@ namespace Check
         + "\n" + "Total Temp Dir Size : " + TotalSize + " MB " + "\n"
         + "System Drive Free Space " + "[" + System.IO.Path.GetPathRoot(Environment.SystemDirectory) + "]" + " : " + nu.SystemDriveFreeSpace() + @" % " + "\n"
         + "IE Version: " + nu.GetIEVersion() + Environment.NewLine
-        + "OS Version: " + _GetSystemInfo.getOSVersion().ToString()
+        + "OS Version: " + _GetSystemInfo.getOSVersion().ToString() + Environment.NewLine
+            + "MAC Address : " + _GetSystemInfo.GetMacAddress().ToString() + Environment.NewLine
+            + "System Uptime : " + _GetSystemInfo.getSystemUptime() + Environment.NewLine
         ;
         }
         #endregion

@@ -105,12 +105,12 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
      (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            VSS_status = serviceDisplayName + " : " + service.Status;
+                            VSS_status = service.DisplayName  + " : " + service.Status;
                             
                         }
                         else
                         {
-                            VSS_status = serviceDisplayName + " : " + service.Status;
+                            VSS_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -118,11 +118,11 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
     (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            wuauserv_status = serviceDisplayName + " : " + service.Status;
+                            wuauserv_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            wuauserv_status = serviceDisplayName + " : " + service.Status;
+                            wuauserv_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -130,11 +130,11 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
     (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            BITS_status = serviceDisplayName + " : " + service.Status;
+                            BITS_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            BITS_status = serviceDisplayName + " : " + service.Status;
+                            BITS_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -142,11 +142,11 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
     (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            CryptSvc_status = serviceDisplayName + " : " + service.Status;
+                            CryptSvc_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            CryptSvc_status = serviceDisplayName + " : " + service.Status;
+                            CryptSvc_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -154,11 +154,11 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
     (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            PlugPlay_status = serviceDisplayName + " : " + service.Status;
+                            PlugPlay_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            PlugPlay_status = serviceDisplayName + " : " + service.Status;
+                            PlugPlay_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -167,11 +167,11 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
     (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            Spooler_status = serviceDisplayName + " : " + service.Status;
+                            Spooler_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            Spooler_status = serviceDisplayName + " : " + service.Status;
+                            Spooler_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -184,11 +184,11 @@ namespace Check
                         if ((status.Equals(ServiceControllerStatus.Stopped)) ||
     (status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            srservice_status = serviceDisplayName + " : " + service.Status;
+                            srservice_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            srservice_status = serviceDisplayName + " : " + service.Status;
+                            srservice_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -231,22 +231,22 @@ namespace Check
             foreach (ServiceController service in ServiceController.GetServices())
             {
                 string serviceName = service.ServiceName.ToString();
-                string serviceDisplayName = service.DisplayName;
+                //string serviceDisplayName = service.DisplayName;
                 string serviceType = service.ServiceType.ToString();
-                string status = service.Status.ToString();
+                //string status = service.Status.ToString();
 
                 switch (serviceName)
                 {
                     case "VSS":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-     (status.Equals(ServiceControllerStatus.StopPending)))
+     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-
+                            /*
                             System.Windows.Forms.MessageBox.Show("asdadsadsda" +
                                     service.DisplayName + Environment.NewLine 
                                     + service.Status
                                     );
-
+                             */ 
                             try
                             {
                                 service.Start();
@@ -274,85 +274,88 @@ namespace Check
                                 System.Diagnostics.Debug.WriteLine(
                                     eXception.Message
                                     );
-
+                                /*
                                 System.Windows.Forms.MessageBox.Show(
                                     eXception.Message
                                     );
 
+                                 */ 
                             }
 
-                                VSS_status = serviceDisplayName + " : " + service.Status;
+                                VSS_status = service.DisplayName  + " : " + service.Status;
 
                         }
                         else
                         {
-                            VSS_status = serviceDisplayName + " : " + service.Status;
+                            VSS_status = service.DisplayName  + " : " + service.Status;
 
+                            /*
                             System.Windows.Forms.MessageBox.Show(
                                     service.DisplayName + Environment.NewLine
                                     + service.Status
                                     );
+                             */ 
                         }
                         break;
 
                     case "wuauserv":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-    (status.Equals(ServiceControllerStatus.StopPending)))
+    (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            wuauserv_status = serviceDisplayName + " : " + service.Status;
+                            wuauserv_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            wuauserv_status = serviceDisplayName + " : " + service.Status;
+                            wuauserv_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
                     case "BITS":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-    (status.Equals(ServiceControllerStatus.StopPending)))
+    (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            BITS_status = serviceDisplayName + " : " + service.Status;
+                            BITS_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            BITS_status = serviceDisplayName + " : " + service.Status;
+                            BITS_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
                     case "CryptSvc":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-    (status.Equals(ServiceControllerStatus.StopPending)))
+    (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            CryptSvc_status = serviceDisplayName + " : " + service.Status;
+                            CryptSvc_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            CryptSvc_status = serviceDisplayName + " : " + service.Status;
+                            CryptSvc_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
                     case "PlugPlay":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-    (status.Equals(ServiceControllerStatus.StopPending)))
+    (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            PlugPlay_status = serviceDisplayName + " : " + service.Status;
+                            PlugPlay_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            PlugPlay_status = serviceDisplayName + " : " + service.Status;
+                            PlugPlay_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
 
                     case "Spooler":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-    (status.Equals(ServiceControllerStatus.StopPending)))
+    (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            Spooler_status = serviceDisplayName + " : " + service.Status;
+                            Spooler_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            Spooler_status = serviceDisplayName + " : " + service.Status;
+                            Spooler_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 
@@ -363,13 +366,13 @@ namespace Check
 
                     case "srservice":
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
-    (status.Equals(ServiceControllerStatus.StopPending)))
+    (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
-                            srservice_status = serviceDisplayName + " : " + service.Status;
+                            srservice_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
                         {
-                            srservice_status = serviceDisplayName + " : " + service.Status;
+                            srservice_status = service.DisplayName  + " : " + service.Status;
                         }
                         break;
 

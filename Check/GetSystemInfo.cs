@@ -9,7 +9,8 @@ using System.Security.Principal;
 using System.Management;
 using System.IO;
 
-
+using System.Net.NetworkInformation;
+using System.Diagnostics;
 namespace Check
 {
     public class GetSystemInfo
@@ -43,6 +44,7 @@ namespace Check
         private string listOfDrives;
         private string videoCardName;
         private string _getOSVersion;
+        private string _SystemUptime;
 
         #endregion
 
@@ -413,14 +415,163 @@ namespace Check
         #endregion
 
 
+        #region MacAddress
+
+        public String GetMacAddress()
+        {
+            const int MIN_MAC_ADDR_LENGTH = 12;
+            string macAddress = string.Empty;
+            long maxSpeed = -1;
+
+            foreach (NetworkInterface nic in
+                NetworkInterface.GetAllNetworkInterfaces())
+            {
+                Debug.WriteLine(
+                     "Found MAC Address: " + nic.GetPhysicalAddress() +
+                     " Type: " + nic.NetworkInterfaceType);
+
+                string tempMac = nic.GetPhysicalAddress().ToString();
+                if (nic.Speed > maxSpeed &&
+                    !string.IsNullOrEmpty(tempMac) &&
+                    tempMac.Length >= MIN_MAC_ADDR_LENGTH)
+                {
+                    Debug.WriteLine(
+                        "New Max Speed = " + nic.Speed + ", MAC: " +
+                        tempMac);
+                    maxSpeed = nic.Speed;
+                    macAddress = tempMac;
+                }
+            }
+
+            //return macAddress;
+
+            string mCAddr = macAddress;
+
+            char[] mcAddressArray = mCAddr.ToCharArray();
+
+            StringBuilder macA = new StringBuilder();
+
+            macA.Append(
+
+               mcAddressArray[0].ToString() +
+               mcAddressArray[1].ToString() +
+               "-" +
+               mcAddressArray[2].ToString() +
+               mcAddressArray[3].ToString() +
+               "-" +
+               mcAddressArray[4].ToString() +
+               mcAddressArray[5].ToString() +
+               "-" +
+               mcAddressArray[6].ToString() +
+               mcAddressArray[7].ToString() +
+               "-" +
+               mcAddressArray[8].ToString() +
+               mcAddressArray[9].ToString() +
+               "-" +
+               mcAddressArray[10].ToString() +
+               mcAddressArray[11].ToString()
+                );
+
+            return macA.ToString();
+        }
+
+        #endregion
+
+
+        #region SystemDriveFreeSpace
+
+        public decimal SystemDriveFreeSpace()
+        {
+            DriveInfo d = new DriveInfo(Path.GetPathRoot(
+            Environment.SystemDirectory));
+            //System.Windows.Forms.MessageBox.Show(((long)d.TotalFreeSpace / (long)d.TotalSize)).ToString());
+            //(long)d.TotalFreeSpace / (long)d.TotalSize);
+            decimal totalSize =
+                (decimal)d.TotalSize;
+            decimal totalFreeSpace = (decimal)d.TotalFreeSpace;
+
+            decimal percentFreeSpace = (totalFreeSpace / totalSize) * 100;
+
+
+            return Math.Round(percentFreeSpace, 3);
+
+
+        }
+
+        #endregion
+
+        #region IEVersion
+
+        public string GetIEVersion()
+        {
+            string key = @"Software\Microsoft\Internet Explorer";
+
+
+            Microsoft.Win32.RegistryKey dkey =
+                Microsoft.Win32.Registry.LocalMachine.OpenSubKey(
+                key,
+                 Microsoft.Win32.RegistryKeyPermissionCheck.Default);
 
 
 
 
+            string data = dkey.GetValue("Version").ToString();
+            return data;
+        }
+
+
+        #endregion
+
+
+        #region SystemUptime
+
+        public string getSystemUptime()
+        {
+            connectionOptions.Impersonation =
+                       System.Management.ImpersonationLevel.Impersonate;
+            scope.Connect();
+
+
+
+            try
+            {
+                //Query system for Operating System information
+                ObjectQuery query = new ObjectQuery(
+                    "SELECT * FROM Win32_OperatingSystem");
+                ManagementObjectSearcher searcher =
+                    new ManagementObjectSearcher(scope, query);
+
+                ManagementObjectCollection queryCollection =
+                    searcher.Get();
+
+                foreach (ManagementObject m in queryCollection)
+                {
+                    // get  SystemUptime
+                    string _SUptime =
+                        m["LastBootUpTime"].ToString();
+
+                    DateTime System_Uptime =
+                System.Management.ManagementDateTimeConverter.ToDateTime(_SUptime);
+
+                    _SystemUptime = System_Uptime.ToString();
+                }
+            }
+
+            catch (ManagementException exception)
+            {
+                _SystemUptime = "Unable to Read";
+                System.Diagnostics.Debug.WriteLine(exception);
+            }
 
 
 
 
+            return _SystemUptime;
+
+        }
+
+
+        #endregion
 
 
 
