@@ -43,7 +43,7 @@ namespace Check
         private string manufacturerName;
         private string listOfDrives;
         private string videoCardName;
-        private string _getOSVersion;
+       // private string _getOSVersion;
         private string _SystemUptime;
 
         #endregion
@@ -287,134 +287,6 @@ namespace Check
         #endregion
 
 
-        //WMI - Queries
-
-        #region SystemManufacturer
-
-        public string getSystemManufacturer()
-        {
-            connectionOptions.Impersonation =
-                       System.Management.ImpersonationLevel.Impersonate;
-            scope.Connect();
-            try 
-            {
-            //Query system for Operating System information
-            ObjectQuery query = new ObjectQuery(
-                "SELECT * FROM Win32_ComputerSystem");
-            ManagementObjectSearcher searcher =
-                new ManagementObjectSearcher(scope, query);
-
-            ManagementObjectCollection queryCollection = 
-                searcher.Get();
-            
-            foreach (ManagementObject m in queryCollection)
-            {
-                // get computer information Manufacturer
-                manufacturerName =
-                    m["Manufacturer"].ToString();
-                
-            }
-            }
-
-            catch(ManagementException exception)
-            {
-                manufacturerName = "Unable to Read";
-                System.Diagnostics.Debug.WriteLine(exception);
-            }
-
-
-            return manufacturerName;
-
-        }
-
-        #endregion
-
-
-
-        #region VideoCardName
-
-        public string getVideoCardName()
-        {
-            connectionOptions.Impersonation =
-                       System.Management.ImpersonationLevel.Impersonate;
-            scope.Connect();
-            try
-            {
-                //Query system for Operating System information
-                ObjectQuery query = new ObjectQuery(
-                    "SELECT * FROM Win32_VideoController");
-                ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher(scope, query);
-
-                ManagementObjectCollection queryCollection =
-                    searcher.Get();
-
-                foreach (ManagementObject m in queryCollection)
-                {
-                    // get videoCardName
-                    videoCardName =
-                        m["Caption"].ToString();
-
-                }
-            }
-
-            catch (ManagementException exception)
-            {
-                videoCardName = "Unable to Read";
-                System.Diagnostics.Debug.WriteLine(exception);
-            }
-
-
-            return videoCardName;
-
-        }
-
-
-        #endregion
-
-
-        #region OS Version
-
-        public string getOSVersion()
-        {
-            connectionOptions.Impersonation =
-                       System.Management.ImpersonationLevel.Impersonate;
-            scope.Connect();
-            try
-            {
-                //Query system for Operating System information
-                ObjectQuery query = new ObjectQuery(
-                    "SELECT * FROM Win32_OperatingSystem");
-                ManagementObjectSearcher searcher =
-                    new ManagementObjectSearcher(scope, query);
-
-                ManagementObjectCollection queryCollection =
-                    searcher.Get();
-
-                foreach (ManagementObject m in queryCollection)
-                {
-                    // get  getOSVersion
-                    _getOSVersion =
-                        m["Caption"].ToString() + "Service Pack " + m["ServicePackMajorVersion"].ToString();
-
-                }
-            }
-
-            catch (ManagementException exception)
-            {
-                _getOSVersion = "Unable to Read";
-                System.Diagnostics.Debug.WriteLine(exception);
-            }
-
-
-            return _getOSVersion;
-
-        }
-
-
-        #endregion
-
-
         #region MacAddress
 
         public String GetMacAddress()
@@ -517,6 +389,137 @@ namespace Check
 
             string data = dkey.GetValue("Version").ToString();
             return data;
+        }
+
+
+        #endregion
+
+
+        //WMI - Queries
+
+        #region SystemManufacturer
+
+        public string getSystemManufacturer()
+        {
+            connectionOptions.Impersonation =
+                       System.Management.ImpersonationLevel.Impersonate;
+            scope.Connect();
+            try 
+            {
+            //Query system for Operating System information
+            ObjectQuery query = new ObjectQuery(
+                "SELECT * FROM Win32_ComputerSystem");
+            ManagementObjectSearcher searcher =
+                new ManagementObjectSearcher(scope, query);
+
+            ManagementObjectCollection queryCollection = 
+                searcher.Get();
+            
+            foreach (ManagementObject m in queryCollection)
+            {
+                // get computer information Manufacturer
+                manufacturerName =
+                    m["Manufacturer"].ToString();
+                
+            }
+            }
+
+            catch(ManagementException exception)
+            {
+                manufacturerName = "Unable to Read";
+                System.Diagnostics.Debug.WriteLine(exception);
+            }
+
+
+            return manufacturerName;
+
+        }
+
+        #endregion
+
+
+
+        #region VideoCardName
+
+        public string getVideoCardName()
+        {
+            connectionOptions.Impersonation =
+                       System.Management.ImpersonationLevel.Impersonate;
+            scope.Connect();
+            try
+            {
+                //Query system for Operating System information
+                ObjectQuery query = new ObjectQuery(
+                    "SELECT * FROM Win32_VideoController");
+                ManagementObjectSearcher searcher =
+                    new ManagementObjectSearcher(scope, query);
+
+                ManagementObjectCollection queryCollection =
+                    searcher.Get();
+
+                foreach (ManagementObject m in queryCollection)
+                {
+                    // get videoCardName
+                    videoCardName =
+                        m["Caption"].ToString();
+
+                }
+            }
+
+            catch (ManagementException exception)
+            {
+                videoCardName = "Unable to Read";
+                System.Diagnostics.Debug.WriteLine(exception);
+            }
+
+
+            return videoCardName;
+
+        }
+
+
+        #endregion
+
+
+        #region OS Version
+
+        public string getOSVersion()
+        {
+            connectionOptions.Impersonation =
+                       System.Management.ImpersonationLevel.Impersonate;
+            scope.Connect();
+
+            string _getOSVersion = null;
+
+            try
+            {
+                //Query system for Operating System information
+                ObjectQuery query = new ObjectQuery(
+                    "SELECT * FROM Win32_OperatingSystem");
+                ManagementObjectSearcher searcher =
+                    new ManagementObjectSearcher(scope, query);
+
+                ManagementObjectCollection queryCollection =
+                    searcher.Get();
+
+                foreach (ManagementObject m in queryCollection)
+                {
+                    // get  getOSVersion
+                    _getOSVersion =
+                        m["Caption"].ToString() + " Service Pack " + m["ServicePackMajorVersion"].ToString();
+
+                }
+            }
+
+            catch (ManagementException exception)
+            {
+                _getOSVersion = "Unable to Read";
+                System.Diagnostics.Debug.WriteLine(exception.Message);
+            }
+
+
+            return _getOSVersion;
+
         }
 
 

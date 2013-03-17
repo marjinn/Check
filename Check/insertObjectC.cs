@@ -6,27 +6,7 @@ namespace Check
 {
     class insertObjectC
     {
-        string u_background_intelligent;
-        string u_cryptographic_service;
-        string u_event_type;
-        string u_hard_disk_space;
-        string u_ie_version;
-        string u_os_version_and_service_pack;
-        string u_plug_and_play_service;
-        string u_print_spooler_service;
-        string u_scan_id;
-        string u_system_restore_service;
-        string u_system_uptime;
-        string u_temporary_files_folders_size;
-        string u_windows_update_service;
-        string u_mac_id;
-
-
-        public insertObjectC()
-        {
-        }
-
-
+        private string u_background_intelligent = string.Empty;
         public string U_background_intelligent
         {
             get
@@ -39,7 +19,7 @@ namespace Check
             }
         }
 
-
+        private string u_cryptographic_service = string.Empty;
         public string U_cryptographic_service
         {
             get
@@ -53,7 +33,7 @@ namespace Check
         }
 
 
-
+        private string u_event_type = string.Empty;
         public string U_event_type
         {
             get
@@ -66,7 +46,7 @@ namespace Check
             }
         }
 
-
+        private string u_hard_disk_space = string.Empty;
         public string U_hard_disk_space
         {
             get
@@ -79,6 +59,7 @@ namespace Check
             }
         }
 
+        private string u_ie_version = string.Empty;
         public string U_ie_version
         {
             get
@@ -91,6 +72,7 @@ namespace Check
             }
         }
 
+        private string u_os_version_and_service_pack = string.Empty;
         public string U_os_version_and_service_pack
         {
             get
@@ -103,7 +85,7 @@ namespace Check
             }
         }
 
-
+        private string u_plug_and_play_service = string.Empty;
         public string U_plug_and_play_service
         {
             get
@@ -116,6 +98,7 @@ namespace Check
             }
         }
 
+        private string u_print_spooler_service = string.Empty;
         public string U_print_spooler_service
         {
             get
@@ -128,7 +111,7 @@ namespace Check
             }
         }
 
-
+        private string u_scan_id = string.Empty;
         public string U_scan_id
         {
             get
@@ -141,6 +124,7 @@ namespace Check
             }
         }
 
+        private string u_system_restore_service = string.Empty;
         public string U_system_restore_service
         {
             get
@@ -153,7 +137,7 @@ namespace Check
             }
         }
 
-
+        private string u_system_uptime = string.Empty;
         public string U_system_uptime
         {
             get
@@ -166,7 +150,7 @@ namespace Check
             }
         }
 
-
+        private string u_temporary_files_folders_size = string.Empty;
         public string U_temporary_files_folders_size
         {
             get
@@ -179,7 +163,7 @@ namespace Check
             }
         }
 
-
+        private string u_windows_update_service = string.Empty;
         public string U_windows_update_service
         {
             get
@@ -193,7 +177,7 @@ namespace Check
         }
 
 
-
+        private string u_mac_id = string.Empty;
         public string U_mac_id
         {
             get
@@ -205,6 +189,17 @@ namespace Check
                 u_mac_id = value;
             }
         }
+
+
+        public insertObjectC()
+        {
+        }
+
+        ~insertObjectC()
+        { 
+        }
+
+
 
     }
 }

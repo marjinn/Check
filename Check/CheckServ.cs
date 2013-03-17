@@ -71,7 +71,7 @@ namespace Check
          */ 
       
 
-          #region CheckServiceStatus
+       #region CheckServiceStatus
         public void CheckStatus(
             out string VSS_status,
             out string wuauserv_status,
@@ -241,6 +241,7 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
      (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+                            #region StartServ VSS
                             /*
                             System.Windows.Forms.MessageBox.Show("asdadsadsda" +
                                     service.DisplayName + Environment.NewLine 
@@ -279,10 +280,11 @@ namespace Check
                                     eXception.Message
                                     );
 
-                                 */ 
+                                 */
                             }
 
-                                VSS_status = service.DisplayName  + " : " + service.Status;
+                            #endregion
+                            VSS_status = service.DisplayName  + " : " + service.Status;
 
                         }
                         else
@@ -302,6 +304,49 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+                            #region StartServ wuauserv
+                            /*
+                            System.Windows.Forms.MessageBox.Show("asdadsadsda" +
+                                    service.DisplayName + Environment.NewLine 
+                                    + service.Status
+                                    );
+                             */
+                            try
+                            {
+                                service.Start();
+                                service.WaitForStatus(ServiceControllerStatus.Running);
+                            }
+                            catch (System.ComponentModel.Win32Exception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    service.DisplayName
+                                    + Environment.NewLine
+                                    + "An error occurred when accessing a system API."
+                                    );
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                     service.DisplayName
+                                     + Environment.NewLine
+                                     + "The service was not found."
+                                     );
+                            }
+
+                            catch (Exception eXception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    eXception.Message
+                                    );
+                                /*
+                                System.Windows.Forms.MessageBox.Show(
+                                    eXception.Message
+                                    );
+
+                                 */
+                            }
+
+                            #endregion
                             wuauserv_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -314,6 +359,49 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+                            #region StartServ BITS
+                            /*
+                            System.Windows.Forms.MessageBox.Show("asdadsadsda" +
+                                    service.DisplayName + Environment.NewLine 
+                                    + service.Status
+                                    );
+                             */
+                            try
+                            {
+                                service.Start();
+                                service.WaitForStatus(ServiceControllerStatus.Running);
+                            }
+                            catch (System.ComponentModel.Win32Exception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    service.DisplayName
+                                    + Environment.NewLine
+                                    + "An error occurred when accessing a system API."
+                                    );
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                     service.DisplayName
+                                     + Environment.NewLine
+                                     + "The service was not found."
+                                     );
+                            }
+
+                            catch (Exception eXception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    eXception.Message
+                                    );
+                                /*
+                                System.Windows.Forms.MessageBox.Show(
+                                    eXception.Message
+                                    );
+
+                                 */
+                            }
+
+                            #endregion
                             BITS_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -326,6 +414,49 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+                            #region StartServ CryptSvc
+                            /*
+                            System.Windows.Forms.MessageBox.Show("asdadsadsda" +
+                                    service.DisplayName + Environment.NewLine 
+                                    + service.Status
+                                    );
+                             */
+                            try
+                            {
+                                service.Start();
+                                service.WaitForStatus(ServiceControllerStatus.Running);
+                            }
+                            catch (System.ComponentModel.Win32Exception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    service.DisplayName
+                                    + Environment.NewLine
+                                    + "An error occurred when accessing a system API."
+                                    );
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                     service.DisplayName
+                                     + Environment.NewLine
+                                     + "The service was not found."
+                                     );
+                            }
+
+                            catch (Exception eXception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    eXception.Message
+                                    );
+                                /*
+                                System.Windows.Forms.MessageBox.Show(
+                                    eXception.Message
+                                    );
+
+                                 */
+                            }
+
+                            #endregion
                             CryptSvc_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -338,6 +469,51 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+
+                            #region StartServ PlugPlay
+                            /*
+                            System.Windows.Forms.MessageBox.Show("asdadsadsda" +
+                                    service.DisplayName + Environment.NewLine 
+                                    + service.Status
+                                    );
+                             */
+                            try
+                            {
+                                service.Start();
+                                service.WaitForStatus(ServiceControllerStatus.Running);
+                            }
+                            catch (System.ComponentModel.Win32Exception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    service.DisplayName
+                                    + Environment.NewLine
+                                    + "An error occurred when accessing a system API."
+                                    );
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                     service.DisplayName
+                                     + Environment.NewLine
+                                     + "The service was not found."
+                                     );
+                            }
+
+                            catch (Exception eXception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    eXception.Message
+                                    );
+                                /*
+                                System.Windows.Forms.MessageBox.Show(
+                                    eXception.Message
+                                    );
+
+                                 */
+                            }
+
+                            #endregion
+
                             PlugPlay_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -351,6 +527,49 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+                            #region StartServ Spooler
+                            /*
+                            System.Windows.Forms.MessageBox.Show("asdadsadsda" +
+                                    service.DisplayName + Environment.NewLine 
+                                    + service.Status
+                                    );
+                             */
+                            try
+                            {
+                                service.Start();
+                                service.WaitForStatus(ServiceControllerStatus.Running);
+                            }
+                            catch (System.ComponentModel.Win32Exception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    service.DisplayName
+                                    + Environment.NewLine
+                                    + "An error occurred when accessing a system API."
+                                    );
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                     service.DisplayName
+                                     + Environment.NewLine
+                                     + "The service was not found."
+                                     );
+                            }
+
+                            catch (Exception eXception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    eXception.Message
+                                    );
+                                /*
+                                System.Windows.Forms.MessageBox.Show(
+                                    eXception.Message
+                                    );
+
+                                 */
+                            }
+
+                            #endregion
                             Spooler_status = service.DisplayName  + " : " + service.Status;
                         }
                         else
@@ -368,6 +587,49 @@ namespace Check
                         if ((service.Status.Equals(ServiceControllerStatus.Stopped)) ||
     (service.Status.Equals(ServiceControllerStatus.StopPending)))
                         {
+                            #region StartServ srservice
+                            /*
+                            System.Windows.Forms.MessageBox.Show("asdadsadsda" +
+                                    service.DisplayName + Environment.NewLine 
+                                    + service.Status
+                                    );
+                             */
+                            try
+                            {
+                                service.Start();
+                                service.WaitForStatus(ServiceControllerStatus.Running);
+                            }
+                            catch (System.ComponentModel.Win32Exception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    service.DisplayName
+                                    + Environment.NewLine
+                                    + "An error occurred when accessing a system API."
+                                    );
+                            }
+                            catch (System.InvalidOperationException)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                     service.DisplayName
+                                     + Environment.NewLine
+                                     + "The service was not found."
+                                     );
+                            }
+
+                            catch (Exception eXception)
+                            {
+                                System.Diagnostics.Debug.WriteLine(
+                                    eXception.Message
+                                    );
+                                /*
+                                System.Windows.Forms.MessageBox.Show(
+                                    eXception.Message
+                                    );
+
+                                 */
+                            }
+
+                            #endregion
                             srservice_status = service.DisplayName  + " : " + service.Status;
                         }
                         else

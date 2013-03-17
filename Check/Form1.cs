@@ -10,21 +10,32 @@ using System.Windows.Forms;
 namespace Check
 {
     public partial class Check : Form
-    {
+    { 
+        Consume _consume = new Consume();
         public Check()
         {
+           
             InitializeComponent();
         }
 
         private void Scan_Click(object sender, EventArgs e)
         {
             updateScanlabel();
+            System.Threading.Thread T = new Thread(_consume.JealousSCANServ);
+            T.Name = "_consume.JealousSCANServ";
+            T.Start();
+            
 
         }
 
         private void Fix_Click(object sender, EventArgs e)
         {
             updateFixlabel();
+            System.Threading.Thread T = new Thread(_consume.JealousFIXServ);
+            T.Name = "_consume.JealousFIXServ";
+            T.Start();
+
+            
         }
 
 
@@ -111,9 +122,11 @@ namespace Check
             + "\n" + "Total Temp Dir Size : " + TotalSize + " MB " + "\n"
             + "System Drive Free Space " + "[" + System.IO.Path.GetPathRoot(Environment.SystemDirectory) + "]" + " : " + nu.SystemDriveFreeSpace() + @" % " + "\n"
             + "IE Version : " + nu.GetIEVersion() + Environment.NewLine
-            + "OS Version : " + _GetSystemInfo.getOSVersion().ToString() + Environment.NewLine
+            + "OS Version : " + Environment.NewLine + _GetSystemInfo.getOSVersion().ToString() + Environment.NewLine
             + "MAC Address : " + _GetSystemInfo.GetMacAddress().ToString() + Environment.NewLine
             + "System Uptime : " + _GetSystemInfo.getSystemUptime() + Environment.NewLine
+            + "Date : " + DateTime.Now + Environment.NewLine 
+
 
             ;
         }
@@ -189,7 +202,7 @@ namespace Check
 
 
             this.Fixlabel.Text =
-            "EventType : Scan" + Environment.NewLine
+            "EventType : Fix " + Environment.NewLine
             + VSS_status + "\n"
         + wuauserv_status + "\n"
        + BITS_status + "\n"
@@ -202,9 +215,10 @@ namespace Check
         + "\n" + "Total Temp Dir Size : " + TotalSize + " MB " + "\n"
         + "System Drive Free Space " + "[" + System.IO.Path.GetPathRoot(Environment.SystemDirectory) + "]" + " : " + nu.SystemDriveFreeSpace() + @" % " + "\n"
         + "IE Version: " + nu.GetIEVersion() + Environment.NewLine
-        + "OS Version: " + _GetSystemInfo.getOSVersion().ToString() + Environment.NewLine
+        + "OS Version: " + Environment.NewLine + _GetSystemInfo.getOSVersion().ToString() + Environment.NewLine
             + "MAC Address : " + _GetSystemInfo.GetMacAddress().ToString() + Environment.NewLine
             + "System Uptime : " + _GetSystemInfo.getSystemUptime() + Environment.NewLine
+            + "Date : " + DateTime.Now + Environment.NewLine 
         ;
         }
         #endregion
