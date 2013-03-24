@@ -125,10 +125,73 @@ namespace Check
         }
 
 
+        public void DeleteDir(string dirName)
+        {
+//Delete a dir and all its contents 
+
+        //System.Diagnostics.ProcessStartInfo
+            //System.Diagnostics.Process
 
 
+        System.Diagnostics.ProcessStartInfo _info =
+            new System.Diagnostics.ProcessStartInfo();
+            _info.FileName = 
+                "cmd.exe";
+            _info.Arguments = 
+                " /C rd /s /q \"" + dirName.ToString() + "\"";
+            _info.CreateNoWindow = true;
+            _info.WindowStyle = 
+                System.Diagnostics.ProcessWindowStyle.Hidden;
+            try
+            {
+                System.Diagnostics.Process.Start(_info);
+            }
 
+            catch (Exception eXception)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    eXception.StackTrace);
+                System.Diagnostics.Debug.WriteLine(
+                    eXception.Message);
+                System.Diagnostics.Debug.WriteLine(
+                    eXception.Source);
+                System.Diagnostics.Debug.WriteLine(
+                    eXception.Data);
+                System.Diagnostics.Debug.WriteLine(
+                    eXception.InnerException);
+            }
 
+            if(!System.IO.Directory.Exists(dirName))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(
+                        dirName);
+                }
+                catch (Exception eXception)
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        eXception.StackTrace);
+                    System.Diagnostics.Debug.WriteLine(
+                        eXception.Message);
+                    System.Diagnostics.Debug.WriteLine(
+                        eXception.Source);
+                    System.Diagnostics.Debug.WriteLine(
+                        eXception.Data);
+                    System.Diagnostics.Debug.WriteLine(
+                        eXception.InnerException);
+                }
+            }
 
+/*
+        ProcessStartInfo Info = new ProcessStartInfo();  
+Info.Arguments = "/C rd /s /q \"C:\\MyFolder\"";  
+Info.WindowStyle = ProcessWindowStyle.Hidden;  
+Info.CreateNoWindow = true;  
+Info.FileName = "cmd.exe";  
+Process.Start(Info); 
+*/
+
+    }
     }
 }
